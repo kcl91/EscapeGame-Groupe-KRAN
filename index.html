@@ -11,141 +11,129 @@
   <script src="https://unpkg.com/jquery-ui/dist/jquery-ui.min.js"></script>
 
   <!-- adapter le thème choisir :  -->
-  <link rel="stylesheet" href="https://unpkg.com/jquery-ui/dist/themes/ui-darkness/jquery-ui.min.css">
-  <link rel="stylesheet" href="preload.css">
-
-  <!-- preload music et image de fond-->
+  <link rel="stylesheet" href="https://unpkg.com/jquery-ui/dist/themes/dark-hive/jquery-ui.min.css">
 
   <!-- ajouter balise de style -->
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="zikFond.mp3" as="audio" type="audio/mpeg" fetchpriority="high">
+   <link rel="preload" href="fond1.jpg" as="image" type="image/jpeg" fetchpriority="high">
 
 </head>
 
 <body>
 
+  <p><button id="idStop">Stop</button></p>
+
   <script>
     $(document).ready(
       function () {
         // écrire le JQuery ici
+        console.log('*** JQuery ' + $.fn.jquery + ' prêt ***')
+        
+        // Début fonction Fstop 
+        // Fstop
+        var Fstop = function () {
+          $('audio').remove()
+        } //fin Fstop
+        $('#idStop').on('click', Fstop)
 
+        // Début fonction Fplay
         // Fplay
-        let Fplay = function (Pfile) {  // Début fonction Fplay
-          let oAudio = $('<audio autoplay      > <source src="' + Pfile + '"></audio>')
+        var Fplay = function (Pfile) {
+          var oAudio = $('<audio autoplay> <source src="' + Pfile + '"></audio>')
           $('body').append(oAudio)
         } //fin Fplay
 
-        // Fstop
-        let Fstop = function () {
-          // Début fonction Fstop 
-          $('audio').remove()
-        } //fin Fstop
-
-
-
-        // FstopZIK
-        let FstopZIK = function () {
-          // Début fonction FstopZIK
-
-
-        } //fin FstopZIK
-
-        // FcontinueZIK
-        let FcontinueZIK = function () { // Début fonction FcontinueZIK
-
-
-
-
-
-
-
-        } //fin FcontinueZIK
-
-        // FpauseZIK
-        let FpauseZIK = function () { // Début fonction FplayZIK
-
-
-
-
-
-
-        } //fin FpauseZIK
-
-
-        // FplayZIK
-        let FplayZIK = function () { // Début fonction FplayZIK
-
-
-
-
-
-
-        } //fin FplayZIK
 
         // Fscene2
-        let Fscene2 = function () {  // Début fonction Fscene2
+
+        let Fscene2 = function () { // Début Fscene2
           // Stopper précedents sons
           Fstop()
           // Jouer son splash.mp3
-          Fplay('splash.mp3')
-          // Stopper précedente musique invoquer FstopZIK
-
-          // Jouer musique de fond, invoquer FplayZIK
-
-
+          Fplay('wind.mp3')
+          
           let shtml = '<div>'
-          shtml += '<h3>Départ<h3>'
+          shtml += '<h3>Début de mon ascension !!<h3>'
           shtml += '<hr/>'
-          shtml += '<center><img src="salle12.png"></center>'
+          shtml += '<center><img src="chemin.jpg"></center>'
           shtml += '</div>'
 
           oBouton = {
             // Bouton recommence
-            'Recommencer': function () {$(this).on('dialogclose', Fscene1).dialog('close').dialog('destroy').remove() },
-
-            'Fin': function () {$(this).dialog('close').dialog('destroy').remove() }
+            'Recommencer': function () { $(this).on('dialogclose', Fscene1).dialog('close').dialog('destroy').remove() },
+            'Fin': function () { $(this).dialog('close').dialog('destroy').remove() }
           }
 
           oOption = {
             buttons: oBouton,
             title: 'Action !',
-            show: {effect: 'blind'}
+            show: { effect: 'blind' }
           }
 
           $(shtml).dialog(oOption)
-        }// fin scene2
+        } // fin Fscene2
 
 
-        // Fscene1
-        let Fscene1 = function () { // Début fonction Fscene1
-          // Stopper la musique invoquer FstopZIK
 
-		  // Stopper le son 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Fin de la Fscene2
+
+        // Debut de Fscene1 
+        let Fscene1 = function () { // début Fscene1
+          // Stopper le son 
           Fstop()
-          
-		  let shtml = '<div>'
-          shtml += '<h3>Jeu réalisé par L1Mod</h3>'
+
+          var shtml = '<div>'
+          shtml += '<h3>Enfin arrivé au sommet. Maintenant je dois redescendre sans trainez ! </h3>'
           shtml += '<hr/>'
-          shtml += '<center><img src="logoFac.png"></center>'
+          shtml += '<center><img src="image1.jpg"></center>'
           shtml += '</div>'
 
           oBouton = {
-            'Départ': function () {$(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
-			
-            'Fin': function () {$(this).dialog('close').dialog('destroy').remove() }
+            'Départ': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
+            'Fin': function () { $(this).dialog('close').dialog('destroy').remove() }
           }
 
           oOption = {
             buttons: oBouton,
-            title: 'Escape Game',
-            show: {effect: 'blind'}
+            title: 'Death Mountain',
+            show: { effect: 'blind' }
           }
 
           $(shtml).dialog(oOption)
+        }// fin Fscene1
 
-        }// fin scene1
 
-        // Invoquer Scene1 pour démarrer le jeu
         Fscene1()
+        // Invoquer Fscene1 pour démarrer le jeu
+
+
+        // Invoquer Fscene1 pour démarrer le jeu
+
 
       })// fin du JQuery
 
