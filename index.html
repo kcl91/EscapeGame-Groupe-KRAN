@@ -23,13 +23,11 @@
 
 <body>
 
-  <p><button id="idStop">Stop</button></p>
-
   <script>
     $(document).ready(
       function () {
 
-       let jsWidth = 500
+        let jsWidth = 500
 
 
         // écrire le JQuery ici
@@ -38,7 +36,7 @@
         var Fstop = function () {
           $('#idFX').remove()
         } //fin Fstop
-        $('#idStop').on('click', Fstop)
+
 
         // Fplay
         var Fplay = function (Pfile) {
@@ -46,55 +44,65 @@
           $('body').append(oAudio)
 
 
-if ($("#idBTzik").length == 0) {
-$("body").prepend('<button id="idBTzik">Pause</button>');
-}
-$("#idBTzik").text("Pause").show();
-$("#idBTzik").off("click").on("click", FpauseZIK);
-};
+          if ($("#idBTzik").length == 0) {
+            $("body").prepend('<button id="idBTzik">Pause</button>');
+          }
+          $("#idBTzik").text("Pause").show();
+          $("#idBTzik").off("click").on("click", FpauseZIK);
+        };
 
-let FpauseZIK = function () {
-let audio = document.getElementById("idZIK");
-if (audio) {
-audio.pause();
-}
-$("#idBTzik").text("Continue");
-$("#idBTzik").off("click").on("click", FcontinueZIK);
-};
+        let FpauseZIK = function () {
+          let audio = document.getElementById("idZIK");
+          if (audio) {
+            audio.pause();
+          }
+          $("#idBTzik").text("Continue");
+          $("#idBTzik").off("click").on("click", FcontinueZIK);
+        };
 
-let FcontinueZIK = function () {
-let audio = document.getElementById("idZIK");
-if (audio) {
-audio.play();
-}
-$("#idBTzik").text("Pause");
-$("#idBTzik").off("click").on("click", FpauseZIK);
-};
+        let FcontinueZIK = function () {
+          let audio = document.getElementById("idZIK");
+          if (audio) {
+            audio.play();
+          }
+          $("#idBTzik").text("Pause");
+          $("#idBTzik").off("click").on("click", FpauseZIK);
+        };
 
-let FstopZIK = function () {
-$("#idZIK").remove();
-$("#idBTzik").hide();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        let FstopZIK = function () {
+          $("#idZIK").remove();
+          $("#idBTzik").hide();
         } //fin Fplay
 
-        
-        // Fscene2
 
+        // Debut de Fscene3.
+        let Fscene3 = function () { // début Fscene3
+          // Stopper le son 
+          Fstop()
+
+          var shtml = '<div>'
+          shtml += 'La neige poudreuse amortit chacun de vos pas et retient votre progression. Vous touchez enfin le fond du couloir, mais le froid vient de franchir un seuil critique.Vos doigts n\'ont plus aucune sensibilité. Vos lèvres gercent et saignent. À quelques mètres sur votre flanc, une cavite sombre s\'enfonce dans la paroi rocheuse : une grotte naturelle, à l\'abri du vent.L\'endroit est lugubre, presque oppressant, mais rester dehors vous vide de votre chaleur vitale à chaque seconde.'
+          shtml += '<hr/>'
+          shtml += '<center><img src="image3.jpg"></center>'
+          shtml += '</div>'
+
+          oBouton = {
+            'Continuer et passé le pont': function () {$(this).on('dialogclose', Fscene4).dialog('close').dialog('destroy').remove()},
+            'S\'arreter': function () {$(this).dialog('close').dialog('destroy').remove()}
+          }
+
+          oOption = {
+            width: jsWidth,
+            buttons: oBouton,
+            title: 'Death Mountain',
+            show: {effect: 'blind'}
+          }
+
+          $(shtml).dialog(oOption)
+        }// fin Fscene3
+
+
+        // Fscene2
         let Fscene2 = function () { // Début Fscene2
           // Stopper précedents sons
           Fstop()
@@ -109,47 +117,19 @@ $("#idBTzik").hide();
 
           oBouton = {
             // Bouton recommence
-            'Recommencer': function () { $(this).on('dialogclose', Fscene1).dialog('close').dialog('destroy').remove() },
-            'Fin': function () { $(this).dialog('close').dialog('destroy').remove() }
+            'Recommencer': function () {$(this).on('dialogclose', Fscene3).dialog('close').dialog('destroy').remove()},
+            'Fin': function () {$(this).dialog('close').dialog('destroy').remove()}
           }
 
           oOption = {
             buttons: oBouton,
             title: 'Action !',
-            width : jsWidth,
-            show: { effect: 'blind' }
+            width: jsWidth,
+            show: {effect: 'blind'}
           }
 
           $(shtml).dialog(oOption)
         } // fin Fscene2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Fin de la Fscene2
 
         // Debut de Fscene1 
         let Fscene1 = function () { // début Fscene1
@@ -163,52 +143,22 @@ $("#idBTzik").hide();
           shtml += '</div>'
 
           oBouton = {
-            'Commencer à descendre': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
-            'Continuer à admirer le paysage': function () { $(this).dialog('close').dialog('destroy').remove() }
+            'Commencer à descendre': function () {$(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove()},
+            'Continuer à admirer le paysage': function () {$(this).dialog('close').dialog('destroy').remove()}
           }
 
           oOption = {
-            width : jsWidth,
+            width: jsWidth,
             buttons: oBouton,
             title: 'Death Mountain',
-            show: { effect: 'blind' }
+            show: {effect: 'blind'}
           }
 
           $(shtml).dialog(oOption)
         }// fin Fscene1 
 
-        // Debut de Fscene3.
-        let Fscene3 = function () { // début Fscene3
-          // Stopper le son 
-          Fstop()
-
-          var shtml = '<div>'
-          shtml += 'La neige poudreuse amortit chacun de vos pas et retient votre progression. Vous touchez enfin le fond du couloir, mais le froid vient de franchir un seuil critique.Vos doigts n\'ont plus aucune sensibilité. Vos lèvres gercent et saignent. À quelques mètres sur votre flanc, une cavite sombre s\'enfonce dans la paroi rocheuse : une grotte naturelle, à l\'abri du vent.L\'endroit est lugubre, presque oppressant, mais rester dehors vous vide de votre chaleur vitale à chaque seconde.'
-          shtml += '<hr/>'
-          shtml += '<center><img src="image3.jpg"></center>'
-          shtml += '</div>'
-
-          oBouton = {
-            'Continuer et passé le pont': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
-            'S\'arreter': function () { $(this).dialog('close').dialog('destroy').remove() }
-          }
-        
-          oOption = {
-            width : jsWidth,
-            buttons: oBouton,
-            title: 'Death Mountain',
-            show: { effect: 'blind' }
-          }
-
-          $(shtml).dialog(oOption)
-        }// fin Fscene3
-
+        // Scene 1 = Depart
         Fscene1()
-        // Invoquer Fscene1 pour démarrer le jeu
-
-
-        // Invoquer Fscene1 pour démarrer le jeu
-
 
       })// fin du JQuery
 
