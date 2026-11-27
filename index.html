@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Projet Escape Game</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- JQuery téléchargement -->
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jquery-ui/dist/jquery-ui.min.js"></script>
+
+  <!-- adapter le thème choisir :  -->
+  <link rel="stylesheet" href="https://unpkg.com/jquery-ui/dist/themes/ui-darkness/jquery-ui.min.css">
+  <link rel="stylesheet" href="preload.css">
+
+  <!-- preload music et image de fond-->
+
+  <!-- ajouter balise de style -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <script>
+    $(document).ready(
+      function () {
+        // écrire le JQuery ici
+
+        // Fplay
+        let Fplay = function (Pfile) {  // Début fonction Fplay
+          let oAudio = $('<audio autoplay      > <source src="' + Pfile + '"></audio>')
+          $('body').append(oAudio)
+        } //fin Fplay
+
+        // Fstop
+        let Fstop = function () {
+          // Début fonction Fstop 
+          $('audio').remove()
+        } //fin Fstop
+
+
+
+        // FstopZIK
+        let FstopZIK = function () {
+          // Début fonction FstopZIK
+
+
+        } //fin FstopZIK
+
+        // FcontinueZIK
+        let FcontinueZIK = function () { // Début fonction FcontinueZIK
+
+
+
+
+
+
+
+        } //fin FcontinueZIK
+
+        // FpauseZIK
+        let FpauseZIK = function () { // Début fonction FplayZIK
+
+
+
+
+
+
+        } //fin FpauseZIK
+
+
+        // FplayZIK
+        let FplayZIK = function () { // Début fonction FplayZIK
+
+
+
+
+
+
+        } //fin FplayZIK
+
+        // Fscene2
+        let Fscene2 = function () {  // Début fonction Fscene2
+          // Stopper précedents sons
+          Fstop()
+          // Jouer son splash.mp3
+          Fplay('splash.mp3')
+          // Stopper précedente musique invoquer FstopZIK
+
+          // Jouer musique de fond, invoquer FplayZIK
+
+
+          let shtml = '<div>'
+          shtml += '<h3>Départ<h3>'
+          shtml += '<hr/>'
+          shtml += '<center><img src="salle12.png"></center>'
+          shtml += '</div>'
+
+          oBouton = {
+            // Bouton recommence
+            'Recommencer': function () {$(this).on('dialogclose', Fscene1).dialog('close').dialog('destroy').remove() },
+
+            'Fin': function () {$(this).dialog('close').dialog('destroy').remove() }
+          }
+
+          oOption = {
+            buttons: oBouton,
+            title: 'Action !',
+            show: {effect: 'blind'}
+          }
+
+          $(shtml).dialog(oOption)
+        }// fin scene2
+
+
+        // Fscene1
+        let Fscene1 = function () { // Début fonction Fscene1
+          // Stopper la musique invoquer FstopZIK
+
+		  // Stopper le son 
+          Fstop()
+          
+		  let shtml = '<div>'
+          shtml += '<h3>Jeu réalisé par L1Mod</h3>'
+          shtml += '<hr/>'
+          shtml += '<center><img src="logoFac.png"></center>'
+          shtml += '</div>'
+
+          oBouton = {
+            'Départ': function () {$(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
+			
+            'Fin': function () {$(this).dialog('close').dialog('destroy').remove() }
+          }
+
+          oOption = {
+            buttons: oBouton,
+            title: 'Escape Game',
+            show: {effect: 'blind'}
+          }
+
+          $(shtml).dialog(oOption)
+
+        }// fin scene1
+
+        // Invoquer Scene1 pour démarrer le jeu
+        Fscene1()
+
+      })// fin du JQuery
+
+  </script>
+</body>
+
+</html>
