@@ -15,8 +15,9 @@
 
   <!-- ajouter balise de style -->
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" href="zikFond.mp3" as="audio" type="audio/mpeg" fetchpriority="high">
-   <link rel="preload" href="fond1.jpg" as="image" type="image/jpeg" fetchpriority="high">
+
+  <link rel="preload" href="son1.mp3" as="audio" type="audio/mpeg" fetchpriority="high">
+  <link rel="preload" href="fond1.jpg" as="image" type="image/jpeg" fetchpriority="high">
 
 </head>
 
@@ -27,20 +28,21 @@
   <script>
     $(document).ready(
       function () {
+
+       let jsWidth = 500
+
+
         // écrire le JQuery ici
         console.log('*** JQuery ' + $.fn.jquery + ' prêt ***')
-        
-        // Début fonction Fstop 
         // Fstop
         var Fstop = function () {
-          $('audio').remove()
+          $('#idFX').remove()
         } //fin Fstop
         $('#idStop').on('click', Fstop)
 
-        // Début fonction Fplay
         // Fplay
         var Fplay = function (Pfile) {
-          var oAudio = $('<audio autoplay> <source src="' + Pfile + '"></audio>')
+          let oAudio = $('<audio autoplay id="idFX"> <source src="' + Pfile + '"></audio>')
           $('body').append(oAudio)
         } //fin Fplay
 
@@ -52,11 +54,11 @@
           Fstop()
           // Jouer son splash.mp3
           Fplay('wind.mp3')
-          
+
           let shtml = '<div>'
-          shtml += '<h3>Début de mon ascension !!<h3>'
+          shtml += '<h3>.<h3>'
           shtml += '<hr/>'
-          shtml += '<center><img src="chemin.jpg"></center>'
+          shtml += '<center><img src="image2.jpg"></center>'
           shtml += '</div>'
 
           oBouton = {
@@ -68,6 +70,7 @@
           oOption = {
             buttons: oBouton,
             title: 'Action !',
+            width : jsWidth,
             show: { effect: 'blind' }
           }
 
@@ -108,17 +111,18 @@
           Fstop()
 
           var shtml = '<div>'
-          shtml += '<h3>Enfin arrivé au sommet. Maintenant je dois redescendre sans trainez ! </h3>'
+          shtml += 'Fraîchement arrivé au sommet du K2 (8 611 m), nos alpinistes savourent brièvement leur victoire avant d\'être rattrapé par le froid extrême, le manque d\'oxygène et le danger mortel de la descente. Nos 4 amis n\'arrive pas à se décider s\'ils doivent descendre immédiatement pour esquiver la tempête ou continuer à admirer le paysage.</>'
           shtml += '<hr/>'
           shtml += '<center><img src="image1.jpg"></center>'
           shtml += '</div>'
 
           oBouton = {
-            'Départ': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
-            'Fin': function () { $(this).dialog('close').dialog('destroy').remove() }
+            'Commencer à descendre': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
+            'Continuer à admirer le paysage': function () { $(this).dialog('close').dialog('destroy').remove() }
           }
 
           oOption = {
+            width : jsWidth,
             buttons: oBouton,
             title: 'Death Mountain',
             show: { effect: 'blind' }
