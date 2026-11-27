@@ -44,6 +44,52 @@
         var Fplay = function (Pfile) {
           let oAudio = $('<audio autoplay id="idFX"> <source src="' + Pfile + '"></audio>')
           $('body').append(oAudio)
+
+
+if ($("#idBTzik").length == 0) {
+$("body").prepend('<button id="idBTzik">Pause</button>');
+}
+$("#idBTzik").text("Pause").show();
+$("#idBTzik").off("click").on("click", FpauseZIK);
+};
+
+let FpauseZIK = function () {
+let audio = document.getElementById("idZIK");
+if (audio) {
+audio.pause();
+}
+$("#idBTzik").text("Continue");
+$("#idBTzik").off("click").on("click", FcontinueZIK);
+};
+
+let FcontinueZIK = function () {
+let audio = document.getElementById("idZIK");
+if (audio) {
+audio.play();
+}
+$("#idBTzik").text("Pause");
+$("#idBTzik").off("click").on("click", FpauseZIK);
+};
+
+let FstopZIK = function () {
+$("#idZIK").remove();
+$("#idBTzik").hide();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         } //fin Fplay
 
         
