@@ -46,7 +46,7 @@
           $('body').append(oAudio)
         } //fin Fplay
 
-
+        
         // Fscene2
 
         let Fscene2 = function () { // Début Fscene2
@@ -56,7 +56,7 @@
           Fplay('wind.mp3')
 
           let shtml = '<div>'
-          shtml += '<h3> Chaque barreau d\'aluminium grince sous votre poids au-dessus du vide, mais les échelles tiennent. Vous atteignez l\'autre bord, les mains engourdies par l\'adrénaline.La pente plonge désormais à la verticale. Vous installez votre corde pour descendre en rappel le long d\'une paroi vertigineuse. À mi-course, le couloir se divise : d\'un côté, un manteau de neige poudreuse épaisse ; de l\'autre, une saillie de rochers noirs exposés au vent.La nuit commence à étirer ses ombres sur la paroi.<h3>'
+          shtml += 'Chaque barreau d\'aluminium grince sous votre poids au-dessus du vide, mais les échelles tiennent. Vous atteignez l\'autre bord, les mains engourdies par l\'adrénaline.La pente plonge désormais à la verticale. Vous installez votre corde pour descendre en rappel le long d\'une paroi vertigineuse. À mi-course, le couloir se divise : d\'un côté, un manteau de neige poudreuse épaisse ; de l\'autre, une saillie de rochers noirs exposés au vent.La nuit commence à étirer ses ombres sur la paroi.'
           shtml += '<hr/>'
           shtml += '<center><img src="image2.jpg"></center>'
           shtml += '</div>'
@@ -129,8 +129,33 @@
           }
 
           $(shtml).dialog(oOption)
-        }// fin Fscene1
+        }// fin Fscene1 
 
+        // Debut de Fscene3.
+        let Fscene3 = function () { // début Fscene3
+          // Stopper le son 
+          Fstop()
+
+          var shtml = '<div>'
+          shtml += 'La neige poudreuse amortit chacun de vos pas et retient votre progression. Vous touchez enfin le fond du couloir, mais le froid vient de franchir un seuil critique.Vos doigts n\'ont plus aucune sensibilité. Vos lèvres gercent et saignent. À quelques mètres sur votre flanc, une cavite sombre s\'enfonce dans la paroi rocheuse : une grotte naturelle, à l\'abri du vent.L\'endroit est lugubre, presque oppressant, mais rester dehors vous vide de votre chaleur vitale à chaque seconde.'
+          shtml += '<hr/>'
+          shtml += '<center><img src="image3.jpg"></center>'
+          shtml += '</div>'
+
+          oBouton = {
+            'Continuer et passé le pont': function () { $(this).on('dialogclose', Fscene2).dialog('close').dialog('destroy').remove() },
+            'S\'arreter': function () { $(this).dialog('close').dialog('destroy').remove() }
+          }
+        
+          oOption = {
+            width : jsWidth,
+            buttons: oBouton,
+            title: 'Death Mountain',
+            show: { effect: 'blind' }
+          }
+
+          $(shtml).dialog(oOption)
+        }// fin Fscene3
 
         Fscene1()
         // Invoquer Fscene1 pour démarrer le jeu
